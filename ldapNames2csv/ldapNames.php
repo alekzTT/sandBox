@@ -6,7 +6,7 @@
 	$filecsv = fopen("ldapEntries.csv","w") or die ("Unable to open file!");
 
 
-
+//TODO config file with vars outside of code
 #$ucn = "Theodoropoulos Alexandros";
 //array of names for ucn values
 	$file = @fopen("names.txt", "r") or die("Unable to open names file!");

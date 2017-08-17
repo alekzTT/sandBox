@@ -2,6 +2,7 @@ from ldap3 import Server, Connection, ALL_ATTRIBUTES, ALL_OPERATIONAL_ATTRIBUTES
 import getpass
 
 # ****** == change values per case
+#TODO config file with variables outside of code
 
 #server = Server('ldap://******:389') unsecure connection
 server = Server('ldaps://******:636')
@@ -20,15 +21,15 @@ if conn.bind():
         dn = dn[4:]
         dn = dn.split(" ")
         dn = dn[0]
-        
+
         #dn = dn[4:]  #substring to take the needed dn for the 2nd Connection
         #this used to work but the DN had more info .....(after a time period....)
-        
+
         print("%s"%dn)
- 
+
         #2nd Connection with the users credentials to retrieve all info
         conn = Connection(server, "%s"%dn, "%s"%upass)
-            
+
         if conn.bind():
             print("ALL SET")
             if conn.search("o=******", "%s"%userfilter, SUBTREE, attributes=[ALL_ATTRIBUTES, ALL_OPERATIONAL_ATTRIBUTES]):
@@ -36,9 +37,9 @@ if conn.bind():
             else: print ("OK but no search")
         else:
             print ("NO NOT YET")
-       
+
 
     else:
-        print ('2nd if failed')            
+        print ('2nd if failed')
 else:
     print('search failed')
